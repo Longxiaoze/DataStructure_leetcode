@@ -61,28 +61,12 @@ public:
 ```cpp
 class Solution {
 public:
-    
-    /*
-    Call binary search twice to find upper and lower bound.
-    Runtime: O(log n) since it's 2 * O(log n)
-    */
     vector<int> searchRange(vector<int>& nums, int target) {
         vector<int> solution;
-        int left = binarySearch(nums, target, true);
-        int right = binarySearch(nums, target, false);
-        solution.push_back(left);
-        solution.push_back(right);
-        return solution;
-    }
-    
-    /* 
-    boolean leftSearch indicates we're looking for left boundary.
-    if false, we are looking for right boundary.
-    */
-    int binarySearch(vector<int>&nums, int target, bool leftSearch){
         int left = 0, right = nums.size()-1;
         int mid;
         int i = -1; // return index
+        int j = -1;
         
         while(left <= right){
             mid = (right + left) / 2;
@@ -95,15 +79,23 @@ public:
             else if(target == nums[mid]){
                 /* MODIFY to find lower and upper bounds */
                 i = mid;
-                if(leftSearch){ // IF lower bound
-                    right = mid-1;
+                j = mid;
+                while(nums[i] == target && i != 0 ){                
+                    if(nums[i-1] == target){ 
+                        i = i-1;
                 }
-                else{ // IF upper bound
-                    left = mid+1; 
+                    else break;}
+                while(nums[j] == target && j != nums.size()-1){                
+                    if(nums[j+1] == target){
+                        j = j+1;
                 }
+                    else break;}
+                break;
             }
         }
-        return i;
+        solution.push_back(i);
+        solution.push_back(j);
+        return solution;
     }
 };
 ```
@@ -149,6 +141,12 @@ public:
 ```
 
 # 总结
-1）[704.二分查找]()是最经典的二分查找的解题思路，不过需要注意，一般二分查找的区间设定可以左闭右闭，也就是[i,j]。也有一种写法是左闭右开，可以参考[二分查找](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md)。二分查找，从名字可以知道这是一个用来查找的算法，那么也就是说，这是一个可以从数组中查找指定位置的算法。后面的所有题基本上都沿着查找这个思路进行了一定程度的修改。
+1）[704.二分查找](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_00_BinarySearch/00_00_BinarySearch.md#1704%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE--704binary-search)是最经典的二分查找的解题思路，不过需要注意，一般二分查找的区间设定可以左闭右闭，也就是[i,j]。也有一种写法是左闭右开，可以参考[二分查找](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md)。二分查找，从名字可以知道这是一个用来查找的算法，那么也就是说，这是一个可以从数组中查找指定位置的算法。后面的所有题基本上都沿着查找这个思路进行了一定程度的修改。
 
-如2）[35.搜索插入位置]()一题
+如2）[35.搜索插入位置](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_00_BinarySearch/00_00_BinarySearch.md#235%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE--35-search-insert-position)一题，查找的是指定位置，没有找到的时候需要返回距离查找最小的那个**位置**。也就是代码中的return left;
+
+如3）[34.在排序数组中查找元素的第一个和最后一个位置](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_00_BinarySearch/00_00_BinarySearch.md#334%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE--34-find-first-and-last-position-of-element-in-sorted-array)一题，从中间查找指定位置的同时，还需要检测**区间的最左边和最右边的位置**。只不过对于二分法来说，能检测到指定的值，但是区间左右两边需要另外写代码来检测，因此，我们可以发现，对于该题目来说，else if(target == nums[mid])只有这里的需要修改来检测区间左右两边。
+
+如4）[69.x 的平方根](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_00_BinarySearch/00_00_BinarySearch.md#469x-%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9--69-sqrtx)一题，二分查找同样用来找数组中指定的值
+
+如 5）[367.有效的完全平方数](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_00_BinarySearch/00_00_BinarySearch.md#5367%E6%9C%89%E6%95%88%E7%9A%84%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0--367-valid-perfect-square)一题，与4）基本相同，但是需要注意的是，如果我们不想使用乘法，因为乘法可能超出界限，我们可以换一种思路使用除法来进行替换，从而避免使用longlong和超界的问题，即使用num%middle==0 && middle == num/middle来替换middle*middle == num。
