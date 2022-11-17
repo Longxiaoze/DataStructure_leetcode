@@ -94,10 +94,24 @@ public:
 
 ## 4）[844.比较含退格的字符串](https://leetcode.cn/problems/backspace-string-compare/)  [844. Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)
 
-题解：
+题解：给定 s 和 t 两个字符串，当它们分别被输入到空白的文本编辑器后，如果两者相等，返回 true 。# 代表退格字符。
 
 ```cpp
-
+class Solution {
+public:
+    bool backspaceCompare(string S, string T) {
+        int i = S.size() - 1, j = T.size() - 1, countA = 0, countB = 0;
+        while(i >= 0 || j >= 0){
+            while(i >= 0 && (S[i] == '#' || countA > 0))
+                if(S[i--] == '#'){++countA;} else{--countA;}
+            while(j >= 0 && (T[j] == '#' || countB > 0)) 
+                if(T[j--] == '#'){++countB;} else{--countB;}
+            if(i < 0 || j < 0) return i == j;
+            if(S[i--] != T[j--]) return false;
+        }
+        return i == j;
+    }
+};
 ```
 
 ## 5）[977.有序数组的平方](https://leetcode.com/problems/squares-of-a-sorted-array/)  [977. Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)
