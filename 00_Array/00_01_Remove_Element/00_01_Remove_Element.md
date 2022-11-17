@@ -71,9 +71,24 @@ public:
 
 ## 3）[283.移动零](https://leetcode.cn/problems/move-zeroes/)  [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/)
 
-题解：
+题解：给定一个整数数组nums，将所有的0移动到到末尾，同时保持非零元素的相对顺序。
 
 ```cpp
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int slowIndex = 0;
+        int flag;
+        for (int fastIndex = 0; fastIndex < nums.size(); fastIndex++) {
+            if (nums[fastIndex] != 0) {
+                flag = nums[slowIndex];
+                nums[slowIndex] = nums[fastIndex];
+                nums[fastIndex] = flag;
+                slowIndex +=1;
+                 }
+        }
+    }    
+};
 
 ```
 
