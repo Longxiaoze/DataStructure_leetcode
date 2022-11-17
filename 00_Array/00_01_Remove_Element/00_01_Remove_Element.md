@@ -139,4 +139,12 @@ public:
 ```
 
 # 总结
+对于数组的双指针问题，通常可以用来解决数组改变的问题，或者两个数组之间进行比较的问题。
 
+如[1）[27. 移除元素]](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_01_Remove_Element/00_01_Remove_Element.md#127-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0--27-remove-element)一题，就是最经典的双指针修改数组的问题。
+
+如[2）[26.删除排序数组中的重复项]](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_01_Remove_Element/00_01_Remove_Element.md#226%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9--26-remove-duplicates-from-sorted-array)[3）[283.移动零]](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_01_Remove_Element/00_01_Remove_Element.md#3283%E7%A7%BB%E5%8A%A8%E9%9B%B6--283-move-zeroes)[5）[977.有序数组的平方]](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_01_Remove_Element/00_01_Remove_Element.md#5977%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9--977-squares-of-a-sorted-array)三个题目，就是很经典的修改单个数组的问题。这三个题目中[2）[26.删除排序数组中的重复项]](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_01_Remove_Element/00_01_Remove_Element.md#226%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9--26-remove-duplicates-from-sorted-array)和[3）[283.移动零]](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_01_Remove_Element/00_01_Remove_Element.md#3283%E7%A7%BB%E5%8A%A8%E9%9B%B6--283-move-zeroes)都是双指针从同一侧移动的题目。[5）[977.有序数组的平方]](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_01_Remove_Element/00_01_Remove_Element.md#5977%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9--977-squares-of-a-sorted-array)一题则是双指针从两侧向中间移动的题目。
+
+如[4）[844.比较含退格的字符串]](https://github.com/Longxiaoze/DataStructure_leetcode/blob/main/00_Array/00_01_Remove_Element/00_01_Remove_Element.md#4844%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2--844-backspace-string-compare)一题则是两个数组进行比较的问题，指针分别在两个字符串(也就是数组移动比较)。
+
+1）2）3）都是对本身数组进行修改，5）新建了一个数组，多了一部分的内存，进一步可以考虑优化内存。
