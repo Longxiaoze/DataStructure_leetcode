@@ -46,10 +46,27 @@ public:
 
 ## 2）[26.删除排序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)  [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
 
-题解：
+题解：给定一个递增排序的整数数组nums，删除重复项，使每个唯一元素只出现一次。元素的相对顺序应该保持不变。返回最终的数组长度。
 
 ```cpp
-
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums)
+    {
+       if(nums.size()==0) return 0;
+       int slowIndex =0;
+       for(int fastIndex=1;fastIndex<nums.size();fastIndex++)
+       {
+           if(nums[slowIndex]!=nums[fastIndex])
+           {
+               slowIndex++;
+               nums[slowIndex]=nums[fastIndex];
+           }
+       } 
+       return slowIndex+1;
+       
+    }
+};
 ```
 
 ## 3）[283.移动零](https://leetcode.cn/problems/move-zeroes/)  [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/)
